@@ -12,4 +12,5 @@ git config --global alias.cf config
 git config --global alias.aa "add ./"
 git config --global alias.cl clone
 
+git config --global push.default current 
 git config --global credential.helper store
