@@ -35,7 +35,7 @@ set show-all-if-unmodified on
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# Usefull aliases for whatever yo want
+# Usefull aliases for whatever you want
 alias ..='cd ../'
 alias prev='cd -'
 alias godmode='chmod 777'
@@ -52,28 +52,35 @@ alias ff='firefox'
 alias rm='rm -rfv'
 alias mkdir='mkdir -pv'
 alias mkcd='make_and_change_dir'
-alias tgz='tar -xvfz'
+alias shut='shutdown 0'
+alias untar='tar -xvf'
 alias df='df -h'
 alias hs='history | grep'
-alias psgrep='ps aux | grep'
+alias ps='ps aux'
 alias atop='atom ./'
 alias gcc='gcc -Wall -g3 -O0'
 alias py='python3 -q'
+
+# Arch aliases (delete it, if you don't need it)
 alias pacman='sudo pacman'
 alias pacin='sudo pacman -S'
 alias pacde='sudo pacman -Rdd'
 alias pacup='sudo pacman -Syu ; echo Done - Press enter to exit; read'
 alias mkpkg='makepkg -sri'
 
-# Aliases for aliases
+# Aliases for GitHub aliases
 alias gnew='git_init_with_cd'
 alias gac='git aa && git cm'
 alias gnb='git nb'
 alias gpo='git pu origin'
+alias gpull='git pull'
 alias gst='git st'
 alias gcl='git_clone_github'
 alias gaur='git_clone_aur'
 alias gh='git hist'
+alias gmf='git mg --no-ff'
 
 # Prompt customization
 PS1="\[\e[1;92m\]\u@\h\[\e[m\] \[\e[1;94m\]\w\[\e[m\]\[\e[1;93m\] \$(git_branch_parsing)\[\e[m\]\[\e[1;32m\]\$\[\e[m\] \[\e[0;97m\]"
+PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
+export GEM_HOME=$(ruby -e 'print Gem.user_dir')
