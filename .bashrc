@@ -35,7 +35,7 @@ set show-all-if-unmodified on
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# Usefull aliases for whatever you want
+# Usefull aliases for whatever yo want
 alias ..='cd ../'
 alias prev='cd -'
 alias godmode='chmod 777'
@@ -45,7 +45,7 @@ alias ll='ls --color=auto -l'
 alias la='ls --color=auto -la'
 alias diff='diff --color=auto'
 alias grep='grep --color=auto -n'
-alias ping='ping -c 4'
+alias tstping='ping -c4 -i0.2 8.8.8.8'
 alias meminfo='free -m -l -t'
 alias cpuinfo='less /proc/cpuinfo'
 alias ff='firefox'
@@ -56,22 +56,16 @@ alias shut='shutdown 0'
 alias untar='tar -xvf'
 alias df='df -h'
 alias hs='history | grep'
-alias ps='ps aux'
+alias psgrep='ps aux'
 alias atop='atom ./'
 alias gcc='gcc -Wall -g3 -O0'
 alias py='python3 -q'
 
-# Arch aliases (delete it, if you don't need it)
-alias pacman='sudo pacman'
-alias pacin='sudo pacman -S'
-alias pacde='sudo pacman -Rdd'
-alias pacup='sudo pacman -Syu ; echo Done - Press enter to exit; read'
-alias mkpkg='makepkg -sri'
-
-# Aliases for GitHub aliases
+# Aliases for aliases
 alias gnew='git_init_with_cd'
 alias gac='git aa && git cm'
 alias gnb='git nb'
+alias gch='git ch'
 alias gpo='git pu origin'
 alias gpull='git pull'
 alias gst='git st'
@@ -82,5 +76,3 @@ alias gmf='git mg --no-ff'
 
 # Prompt customization
 PS1="\[\e[1;92m\]\u@\h\[\e[m\] \[\e[1;94m\]\w\[\e[m\]\[\e[1;93m\] \$(git_branch_parsing)\[\e[m\]\[\e[1;32m\]\$\[\e[m\] \[\e[0;97m\]"
-PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
-export GEM_HOME=$(ruby -e 'print Gem.user_dir')
