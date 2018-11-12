@@ -56,10 +56,11 @@ alias shut='shutdown 0'
 alias untar='tar -xvf'
 alias df='df -h'
 alias hs='history | grep'
-alias psgrep='ps aux'
-alias atop='atom ./'
+alias psa='ps aux'
+alias psgrep='ps aux | grep'
 alias gcc='gcc -Wall -g3 -O0'
 alias py='python3 -q'
+alias gdb='gdb -q'
 
 # Aliases for aliases
 alias gnew='git_init_with_cd'
@@ -76,3 +77,5 @@ alias gmf='git mg --no-ff'
 
 # Prompt customization
 PS1="\[\e[1;92m\]\u@\h\[\e[m\] \[\e[1;94m\]\w\[\e[m\]\[\e[1;93m\] \$(git_branch_parsing)\[\e[m\]\[\e[1;32m\]\$\[\e[m\] \[\e[0;97m\]"
+PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
+export GEM_HOME=$(ruby -e 'print Gem.user_dir')
