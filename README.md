@@ -10,7 +10,7 @@ For GitHub aliases you should run script in, located in the same repo, `gitalias
 
 ### Note for gitaliases.sh:
 Firstly, give rights on execution to the script with `chomd +x ./gitaliases.sh`.
-After that you can run it from anywhere `./gitaliases.sh`
+After that you can run simply it as `./gitaliases.sh`
 
 
 ##### Star and Share if you like it :D

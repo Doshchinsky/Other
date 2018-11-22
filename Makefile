@@ -15,13 +15,13 @@ $(dirs):
 	mkdir bin
 
 ./obj/main.o: ./src/main.c
-	gcc -c ./src/main.c -Wall -o ./obj/main.o $(INCLUDES)
+	$(CC) -c ./src/main.c -Wall -o ./obj/main.o $(INCLUDES)
 
 ./obj/lib.o: ./src/lib.c
-	gcc -c ./src/lib.c -Wall -o ./obj/lib.o $(INCLUDES)
+	$(CC) -c ./src/lib.c -Wall -o ./obj/lib.o $(INCLUDES)
 
 ./obj/extralib.o: ./src/extralib.c
-	gcc -c ./src/extralib.c -Wall -o ./obj/extralib.o $(INCLUDES)
+	$(CC) -c ./src/extralib.c -Wall -o ./obj/extralib.o $(INCLUDES)
 
 .PHONY: clean exec
 clean:
