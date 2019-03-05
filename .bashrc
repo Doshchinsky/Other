@@ -68,7 +68,7 @@ alias gdb='gdb -q'
 alias pacman='sudo pacman'
 alias pacin='sudo pacman -S'
 alias pacde='sudo pacman -Rdd'
-alias pacup='sudo pacman -Syu ; ~/./.postinstall.sh'
+alias pacup='sudo pacman -Syu ; ~/.postinstall.sh'
 alias mkpkg='makepkg -sic'
 
 # Aliases for aliases

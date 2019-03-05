@@ -1,33 +1,28 @@
 CC = gcc
-CFLAGS = -g3 -O0 -Wall
+QUIET = @
+CFLAGS = -Wall -g3 -O0
+OFLAGS = -Wall -c
 LIB = -lm
-INCLUDES = -I src/
-dirs = ./bin ./obj
-main_obj = ./obj/main.o ./obj/lib.o ./obj/extralib.o
 
-all: ./bin/main
+SRC_DIR = src
+OBJ_DIR = obj
+BIN_DIR = bin
+INCLUDES = -I $(SRC_DIR)
+DIRS = $(BIN_DIR) $(OBJ_DIR)
+OBJ = $(OBJ_DIR)/main.o $(OBJ_DIR)/extralib.o
 
-./bin/main: $(dirs) $(main_obj)
-	$(CC) $(CFLAGS) $(main_obj) -o ./bin/cmpl $(LIB)
+.PHONY: all bins objs clean
+all: $(DIRS) bins
 
-$(dirs):
-	mkdir obj
-	mkdir bin
+$(DIRS):
+	mkdir $(DIRS)
 
-./obj/main.o: ./src/main.c
-	$(CC) -c ./src/main.c -Wall -o ./obj/main.o $(INCLUDES)
+bins: objs
+	$(CC) $(OBJ) $(CFLAGS) -o $(BIN_DIR)/cmpl $(LIB)
 
-./obj/lib.o: ./src/lib.c
-	$(CC) -c ./src/lib.c -Wall -o ./obj/lib.o $(INCLUDES)
+objs:
+	$(CC) $(OFLAGS) $(SRC_DIR)/extralib.c -o $(OBJ_DIR)/extralib.o $(INCLUDES)
+	$(CC) $(OFLAGS) $(SRC_DIR)/main.c -o $(OBJ_DIR)/main.o $(INCLUDES)
 
-./obj/extralib.o: ./src/extralib.c
-	$(CC) -c ./src/extralib.c -Wall -o ./obj/extralib.o $(INCLUDES)
-
-.PHONY: clean exec
 clean:
-	rm -rf bin/
-	rm -rf obj/
-
-exec:
-	make
-	./bin/cmpl
+	$(QUIET)rm -rfv $(DIRS)
