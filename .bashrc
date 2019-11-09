@@ -18,6 +18,11 @@ git_init_with_cd() {
   cd "$@";
 }
 
+git_commit_and_push() {
+  gac "$@";
+  gpo;
+}
+
 # Shortens git-clone command syntax. Now you needn't type whole path
 git_clone_github() {
   git clone https://github.com/"$@";
@@ -37,8 +42,6 @@ set show-all-if-unmodified on
 
 # Usefull aliases for whatever yo want
 alias ..='cd ../'
-alias prev='cd -'
-alias godmode='chmod 777'
 alias src='source ~/.bashrc'
 alias ls='ls --color=auto'
 alias ll='ls --color=auto -l'
@@ -60,31 +63,25 @@ alias hs='history | grep'
 alias psa='ps aux'
 alias psgrep='ps aux | grep'
 alias at='atom ./'
-alias gcc='gcc -Wall'
+alias gcc='gcc -Wall -g3 -O0'
 alias py='python3 -q'
 alias gdb='gdb -q'
-
-# Arch aliases (delete it, if you don't need it)
-alias pacman='sudo pacman'
-alias pacin='sudo pacman -S'
-alias pacde='sudo pacman -Rdd'
-alias pacup='sudo pacman -Syu ; ~/.postinstall.sh'
-alias mkpkg='makepkg -sic'
+alias '+x'='chmod +x'
 
 # Aliases for aliases
 alias gnew='git_init_with_cd'
 alias gac='git aa && git cm'
+alias gpo='git pu origin'
+alias gcp='git_commit_and_push'
 alias gnb='git nb'
 alias gch='git ch'
-alias gpo='git pu origin'
 alias gpl='git pull'
 alias gst='git st'
 alias gcl='git_clone_github'
 alias gaur='git_clone_aur'
 alias gh='git hist'
 alias gmf='git mg --no-ff'
+alias gup='. ~/SibSUTIS/.repoupdate.sh'
 
 # Prompt customization
-PS1="\[\e[1;92m\]\u@\h\[\e[m\] \[\e[1;94m\]\w\[\e[m\]\[\e[1;93m\] \$(git_branch_parsing)\[\e[m\]\[\e[1;32m\]\$\[\e[m\] \[\e[0;97m\]"
-PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
-export GEM_HOME=$(ruby -e 'print Gem.user_dir')
+PS1="\[\e[1;92m\]\u@\h\[\e[m\] \[\e[1;94m\]\w\[\e[m\]\[\e[1;93m\] \$(git_branch_parsing)\[\e[m\]\[\e[1;92m\]\$\[\e[m\] \[\e[0;97m\]"
