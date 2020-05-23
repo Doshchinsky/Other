@@ -177,7 +177,7 @@ alias gmf='git mg --no-ff'
 alias pacman='sudo pacman'
 alias pacin='sudo pacman -S'
 alias pacde='sudo pacman -Rdd'
-alias pacup='sudo pacman -Syu ; ~/.postinstall.sh'
+alias pacup='sudo pacman -Syu'
 alias mkpkg='makepkg -sic'
 
 xhost +local:root > /dev/null 2>&1

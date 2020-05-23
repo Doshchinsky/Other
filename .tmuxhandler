@@ -1,0 +1,90 @@
+#!/bin/bash
+cd
+ACTIVE_W_Hyperion=(
+	main
+	extra
+	SibSUTIS
+	csc
+	jet
+	oak
+	noc
+)
+
+function create_tmux_window() {
+  if [ ! $# -eq 3 ]; then
+    return 1
+  fi
+  if [[ $3 == 1 ]]; then
+    tmux new-window -a -n $2 -t $1
+  fi
+  if [ ! $? -eq 0 ]; then
+    return 2
+  fi
+  case $2 in
+    main)
+      tmux split-window -v -t $1:$2.0
+      ;;
+    extra)
+			tmux split-window -v -t $1:$2.0
+      ;;
+    SibSUTIS)
+      tmux split-window -v -t $1:$2.0
+      tmux send-keys -t $1:$2.0 "cd SibSUTIS" Enter
+      tmux send-keys -t $1:$2.1 "cd SibSUTIS" Enter
+      ;;
+    csc)
+			tmux split-window -h -t $1:$2.0
+			tmux split-window -v -t $1:$2.1
+			tmux send-keys -t $1:$2.0 "csc" Enter
+      tmux send-keys -t $1:$2.1 "csc" Enter
+      tmux send-keys -t $1:$2.2 "csc" Enter
+      ;;
+    jet)
+      tmux split-window -h -t $1:$2.0
+      tmux split-window -v -t $1:$2.1
+      tmux send-keys -t $1:$2.0 "jet" Enter
+      tmux send-keys -t $1:$2.1 "jet" Enter
+      tmux send-keys -t $1:$2.2 "jet" Enter
+      ;;
+    oak)
+      tmux split-window -h -t $1:$2.0
+      tmux split-window -v -t $1:$2.1
+      tmux send-keys -t $1:$2.0 "oak" Enter
+      tmux send-keys -t $1:$2.1 "oak" Enter
+      tmux send-keys -t $1:$2.2 "oak" Enter
+      ;;
+    noc)
+      tmux send-keys -t $1:$2.0 "noc" Enter
+      ;;
+    *)
+      # tmux send-keys -t $1:$2.0 "disp" Enter
+      ;;
+  esac
+  return 0;
+}
+
+for cursor_session in $@
+do
+  case $cursor_session in
+    Hyperion)
+      tmux new-session -s $cursor_session -n ${ACTIVE_W_Hyperion[0]} -d
+      if [ ! $? -eq 0 ]; then
+        break
+      fi
+      for cursor_window in ${ACTIVE_W_Hyperion[@]}
+      do
+        if [[ $cursor_window == ${ACTIVE_W_Hyperion[0]} ]]; then
+          create_tmux_window $cursor_session $cursor_window 0
+          echo [code $?] : $cursor_window
+          continue
+        fi
+        create_tmux_window $cursor_session $cursor_window 1
+        echo [code $?] : $cursor_window
+      done
+      ;;
+  esac
+  echo [session create] : $cursor_session
+done
+
+cd -
+exit 0
