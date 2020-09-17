@@ -158,6 +158,15 @@ alias gcc='gcc -Wall -g3 -O0'
 alias py='python3 -q'
 alias gdb='gdb -q'
 alias '+x'='chmod +x'
+alias hype='tmuxhandler Hyperion ; tmux attach -t Hyperion'
+alias hypekill='tmux kill-server'
+
+# SSH Aliases
+alias jet='ssh doshinsky@jet.cpct.sibsutis.ru ; echo Disconnected: $(date)'
+alias oak='ssh doschinsky@oak.cpct.sibsutis.ru ; echo Disconnected: $(date)'
+alias csc='ssh doshchinsky@linux.csc.sibsutis.ru ; echo Disconnected: $(date)'
+alias noc='ssh -p 40322 gwadmin@195.149.207.161 ; echo Disconnected: $(date)'
+alias cyb='ssh IG-192@cyber.sibsutis.ru ; echo Disconnected: $(date)'
 
 # Aliases for aliases
 alias gnew='git_init_with_cd'
